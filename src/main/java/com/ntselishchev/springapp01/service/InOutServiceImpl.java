@@ -7,15 +7,17 @@ import java.util.Scanner;
 @Service
 public class InOutServiceImpl implements InOutService {
 
-    public Scanner initScanner() {
-        return new Scanner(System.in);
+    private final Scanner scanner;
+
+    public InOutServiceImpl() {
+        scanner = new Scanner(System.in);
     }
 
     public void print(String message) {
         System.out.println(message);
     }
 
-    public String getUserInputMessage(Scanner scanner) {
+    public String getUserInputMessage() {
         return scanner.nextLine().trim();
     }
 }

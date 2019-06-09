@@ -17,7 +17,7 @@ public class TestProcessingServiceImpl implements TestProcessingService {
     private final CsvImportService importService;
     private final CsvMapperService mapperService;
 
-    public List<TestEntry> getTestEntries(Integer questionAmount, Boolean randomise) {
+    public List<TestEntry> getTestEntries(int questionAmount, boolean randomise) {
         InputStream inputStream = importService.getFile();
         List<List<String>> records = csvParserService.parseCsv(inputStream);
         List<TestEntry> allEntries = mapperService.mapToTestEntry(records);
@@ -39,4 +39,8 @@ public class TestProcessingServiceImpl implements TestProcessingService {
         return answer.equalsIgnoreCase(entry.getAnswer());
     }
 
+
+    public boolean isPassed(int correctAnswersAmount, int border) {
+        return correctAnswersAmount >= border;
+    }
 }

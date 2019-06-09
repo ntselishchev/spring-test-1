@@ -1,5 +1,6 @@
 package com.ntselishchev.springapp01.controller;
 
+import com.ntselishchev.springapp01.config.ApplicationProperties;
 import com.ntselishchev.springapp01.domain.Person;
 import com.ntselishchev.springapp01.domain.TestEntry;
 import com.ntselishchev.springapp01.service.*;
@@ -7,14 +8,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Scanner;
 
 @Service
 @RequiredArgsConstructor
 public class TestController {
 
     private final TestProcessingService testProcessingService;
-    private final PropertiesService propertiesService;
+    private final ApplicationProperties applicationProperties;
     private final TranslationService translationService;
     private final PersonService personService;
     private final InOutService inOutService;
@@ -28,24 +28,23 @@ public class TestController {
     public void processTest() {
 
         int correctAnswersAmount = 0;
-        Scanner sc = inOutService.initScanner();
 
-        Person person = personService.initPerson(sc);
+        Person person = personService.initPerson();
         String greetingTranslation = translationService.getTranslationUsingParams(USER_GREETING_KEY, new String[] {person.getFirstName(), person.getLastName()});
         inOutService.print(greetingTranslation);
 
-        List<TestEntry> entryList = testProcessingService.getTestEntries(propertiesService.getQuestionsAmount(), propertiesService.getRandomise());
+        List<TestEntry> entryList = testProcessingService.getTestEntries(applicationProperties.getQuestionsAmount(), applicationProperties.isRandomise());
 
         for (TestEntry entry : entryList) {
             inOutService.print(entry.getQuestion());
 
-            boolean isCorrect = testProcessingService.validateAnswer(entry, inOutService.getUserInputMessage(sc));
+            boolean isCorrect = testProcessingService.validateAnswer(entry, inOutService.getUserInputMessage());
             if (isCorrect) {
                 correctAnswersAmount++;
             }
         }
 
-        String statusTranslationKey = TestProcessingService.isPassed(correctAnswersAmount, propertiesService.getPassedBorder()) ? TEST_PASSED_KEY : TEST_FAILED_KEY;
+        String statusTranslationKey = testProcessingService.isPassed(correctAnswersAmount, applicationProperties.getPassedBorder()) ? TEST_PASSED_KEY : TEST_FAILED_KEY;
         String statusTranslation = translationService.getTranslation(statusTranslationKey);
         String testResultsTranslation = translationService.getTranslationUsingParams(TEST_RESULT_KEY, new String[]{String.valueOf(correctAnswersAmount), String.valueOf(entryList.size())});
         inOutService.print(testResultsTranslation);

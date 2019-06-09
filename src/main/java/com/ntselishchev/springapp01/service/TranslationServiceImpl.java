@@ -1,5 +1,6 @@
 package com.ntselishchev.springapp01.service;
 
+import com.ntselishchev.springapp01.config.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -9,14 +10,14 @@ import org.springframework.stereotype.Service;
 public class TranslationServiceImpl implements TranslationService {
 
     private final MessageSource messageSource;
-    private final PropertiesService propertiesService;
+    private final ApplicationProperties applicationProperties;
 
     public String getTranslation(String field) {
-        return messageSource.getMessage(field, null, propertiesService.getLocale());
+        return messageSource.getMessage(field, null, applicationProperties.getLocale());
     }
 
     public String getTranslationUsingParams(String field, String[] params) {
-        return messageSource.getMessage(field, params, propertiesService.getLocale());
+        return messageSource.getMessage(field, params, applicationProperties.getLocale());
     }
 
 }

@@ -6,12 +6,10 @@ import java.util.List;
 
 public interface TestProcessingService {
 
-    List<TestEntry> getTestEntries(Integer questionAmount, Boolean randomise);
+    List<TestEntry> getTestEntries(int questionAmount, boolean randomise);
 
     boolean validateAnswer(TestEntry entry, String answer);
 
-    static boolean isPassed(Integer correctAnswersAmount, Integer border) {
-        return correctAnswersAmount >= border;
-    }
+    boolean isPassed(int correctAnswersAmount, int border);
 
 }
