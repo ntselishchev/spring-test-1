@@ -12,14 +12,14 @@ public class PersonServiceImpl implements PersonService {
     private final InOutService inOutService;
     private final Scanner scanner;
 
+    private static final String TEST_FIRST_NAME_KEY = "test.ask-first-name";
+    private static final String TEST_LAST_NAME_KEY = "test.ask-last-name";
+
     public PersonServiceImpl(TranslationService translationService, InOutService inOutService) {
         this.translationService = translationService;
         this.inOutService = inOutService;
         scanner = new Scanner(System.in);
     }
-
-    private static final String TEST_FIRST_NAME_KEY = "test.ask-first-name";
-    private static final String TEST_LAST_NAME_KEY = "test.ask-last-name";
 
     public Person initPerson() {
         inOutService.print(translationService.getTranslation(TEST_FIRST_NAME_KEY));

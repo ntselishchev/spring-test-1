@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.ListUtils;
 import org.springframework.stereotype.Service;
 
-import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,14 +12,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TestProcessingServiceImpl implements TestProcessingService {
 
-    private final CsvParserService csvParserService;
-    private final CsvImportService importService;
-    private final CsvMapperService mapperService;
+    private final QuestionsDao questionsDao;
 
     public List<TestEntry> getTestEntries(int questionAmount, boolean randomise) {
-        InputStream inputStream = importService.getFile();
-        List<List<String>> records = csvParserService.parseCsv(inputStream);
-        List<TestEntry> allEntries = mapperService.mapToTestEntry(records);
+        List<TestEntry> allEntries = questionsDao.getEntries();
 
         if (randomise) {
             Collections.shuffle(allEntries);
@@ -38,7 +33,6 @@ public class TestProcessingServiceImpl implements TestProcessingService {
     public boolean validateAnswer(TestEntry entry, String answer){
         return answer.equalsIgnoreCase(entry.getAnswer());
     }
-
 
     public boolean isPassed(int correctAnswersAmount, int border) {
         return correctAnswersAmount >= border;
