@@ -1,6 +1,6 @@
-package com.ntselishchev.springapp01.service;
+package com.ntselishchev.springapptest.service;
 
-import com.ntselishchev.springapp01.config.ApplicationProperties;
+import com.ntselishchev.springapptest.config.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;

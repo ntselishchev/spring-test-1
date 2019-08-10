@@ -1,6 +1,6 @@
-package com.ntselishchev.springapp01.service;
+package com.ntselishchev.springapptest.service;
 
-import com.ntselishchev.springapp01.domain.Person;
+import com.ntselishchev.springapptest.domain.Person;
 import org.springframework.stereotype.Service;
 
 import java.util.Scanner;

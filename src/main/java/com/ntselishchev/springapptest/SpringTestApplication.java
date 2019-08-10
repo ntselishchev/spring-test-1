@@ -1,15 +1,15 @@
-package com.ntselishchev.springapp01;
+package com.ntselishchev.springapptest;
 
-import com.ntselishchev.springapp01.controller.TestController;
+import com.ntselishchev.springapptest.controller.TestController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class SpringTest1Application {
+public class SpringTestApplication {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(SpringTest1Application.class, args);
+		ConfigurableApplicationContext context = SpringApplication.run(SpringTestApplication.class, args);
 		TestController service = context.getBean(TestController.class);
 		service.processTest();
 	}

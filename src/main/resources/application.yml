@@ -1,0 +1,11 @@
+application:
+  questions:
+    amount: 3
+    randomise: true
+    passed-border: 3
+    file-name: test
+    file-extension: csv
+spring:
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8

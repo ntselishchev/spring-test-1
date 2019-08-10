@@ -1,6 +1,6 @@
-package com.ntselishchev.springapp01.service;
+package com.ntselishchev.springapptest.service;
 
-import com.ntselishchev.springapp01.domain.TestEntry;
+import com.ntselishchev.springapptest.domain.TestEntry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

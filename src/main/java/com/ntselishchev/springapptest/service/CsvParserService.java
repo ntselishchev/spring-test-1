@@ -1,4 +1,4 @@
-package com.ntselishchev.springapp01.service;
+package com.ntselishchev.springapptest.service;
 
 import java.io.InputStream;
 import java.util.List;

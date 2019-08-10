@@ -1,9 +1,9 @@
-package com.ntselishchev.springapp01.controller;
+package com.ntselishchev.springapptest.controller;
 
-import com.ntselishchev.springapp01.config.ApplicationProperties;
-import com.ntselishchev.springapp01.domain.Person;
-import com.ntselishchev.springapp01.domain.TestEntry;
-import com.ntselishchev.springapp01.service.*;
+import com.ntselishchev.springapptest.config.ApplicationProperties;
+import com.ntselishchev.springapptest.domain.Person;
+import com.ntselishchev.springapptest.domain.TestEntry;
+import com.ntselishchev.springapptest.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class TestController {
         String greetingTranslation = translationService.getTranslationUsingParams(USER_GREETING_KEY, new String[] {person.getFirstName(), person.getLastName()});
         inOutService.print(greetingTranslation);
 
-        List<TestEntry> entryList = testProcessingService.getTestEntries(applicationProperties.getQuestionsAmount(), applicationProperties.isRandomise());
+        List<TestEntry> entryList = testProcessingService.getTestEntries(applicationProperties.getQuestions().getAmount(), applicationProperties.getQuestions().isRandomise());
 
         for (TestEntry entry : entryList) {
             inOutService.print(entry.getQuestion());
@@ -44,7 +44,7 @@ public class TestController {
             }
         }
 
-        String statusTranslationKey = testProcessingService.isPassed(correctAnswersAmount, applicationProperties.getPassedBorder()) ? TEST_PASSED_KEY : TEST_FAILED_KEY;
+        String statusTranslationKey = testProcessingService.isPassed(correctAnswersAmount, applicationProperties.getQuestions().getPassedBorder()) ? TEST_PASSED_KEY : TEST_FAILED_KEY;
         String statusTranslation = translationService.getTranslation(statusTranslationKey);
         String testResultsTranslation = translationService.getTranslationUsingParams(TEST_RESULT_KEY, new String[]{String.valueOf(correctAnswersAmount), String.valueOf(entryList.size())});
         inOutService.print(testResultsTranslation);

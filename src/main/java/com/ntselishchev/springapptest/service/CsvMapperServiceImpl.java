@@ -1,6 +1,6 @@
-package com.ntselishchev.springapp01.service;
+package com.ntselishchev.springapptest.service;
 
-import com.ntselishchev.springapp01.domain.TestEntry;
+import com.ntselishchev.springapptest.domain.TestEntry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

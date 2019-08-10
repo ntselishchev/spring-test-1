@@ -1,4 +1,4 @@
-package com.ntselishchev.springapp01.domain;
+package com.ntselishchev.springapptest.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
