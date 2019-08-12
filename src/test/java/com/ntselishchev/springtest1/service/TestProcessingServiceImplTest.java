@@ -5,10 +5,10 @@ import com.ntselishchev.springapptest.service.QuestionsDao;
 import com.ntselishchev.springapptest.service.TestProcessingServiceImpl;
 import com.ntselishchev.springtest1.SpringTestApplicationTests;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,15 +17,11 @@ import java.util.List;
 
 public class TestProcessingServiceImplTest extends SpringTestApplicationTests {
 
+    @Autowired
     protected TestProcessingServiceImpl testProcessingService;
 
-    @Mock
+    @MockBean
     protected QuestionsDao questionsDao;
-
-    @Before
-    public void setUp() {
-        testProcessingService = new TestProcessingServiceImpl(questionsDao);
-    }
 
     @Test
     public void testGetTestEntriesWhenThereAreNoTestEntriesAvailableShouldReturnEmptyList() {
